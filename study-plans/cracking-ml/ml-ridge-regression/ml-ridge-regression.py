@@ -29,7 +29,7 @@ def ridge_regression(X, y, lr, epochs, alpha):
         # update b
         b -= lr * db
 
-    w = [round(float(v), 4) for v in w]
+    w = [round(float(v), 4) for v in w] # Remember to write in this form to avoid floating bias
     b = round(float(b), 4)
     
     return w, b
