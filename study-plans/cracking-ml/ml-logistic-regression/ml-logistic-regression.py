@@ -1,8 +1,5 @@
 import numpy as np
 
-def sigmoid(z):
-    return (1 / (1 + np.exp(-z)))
-
 def logistic_regression(X, y, lr=0.01, n_iters=1000):
     """
     Returns:
@@ -18,7 +15,8 @@ def logistic_regression(X, y, lr=0.01, n_iters=1000):
     bias = 0.0
 
     for _ in range(n_iters):
-        y_hat = sigmoid(X @ weights + bias)
+        z = X @ weights + bias
+        y_hat = 1 / (1 + np.exp(-z))
         y_diff = y_hat - y
 
         dw = (1.0 / n) * (X.T @ y_diff)
@@ -30,4 +28,4 @@ def logistic_regression(X, y, lr=0.01, n_iters=1000):
     weights = np.round(weights, decimals=4)
     bias = round(bias, 4)
 
-    return weights, bias
+    return weights.tolist(), bias # Use np.tolist to convert np to list
